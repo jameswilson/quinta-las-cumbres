@@ -3,56 +3,102 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#f6f1e7">
+  <meta name="theme-color" content="#eee8dc">
   <meta name="description" content="Cómo llegar a Quinta Las Cumbres usando Waze o Google Maps.">
   <title>Quinta Las Cumbres · Cómo llegar</title>
   <style>
-    :root{--ink:#243126;--muted:#697268;--paper:#f6f1e7;--card:#fffdf8;--line:#d8d2c5;--accent:#405c45}
+    :root{--ink:#203428;--muted:#667168;--paper:#eee8dc;--card:#fffdf8;--line:#d7d0c2;--accent:#365f43;--accent-dark:#294d35;--sun:#d3a64d}
     *{box-sizing:border-box}
-    body{margin:0;min-height:100svh;display:grid;place-items:center;padding:24px;background:var(--paper);color:var(--ink);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    main{width:min(100%,440px);background:var(--card);border:1px solid var(--line);border-radius:24px;padding:36px 24px;box-shadow:0 14px 40px rgba(36,49,38,.08);text-align:center}
-    .mark{font-size:36px;line-height:1;margin-bottom:16px}
-    h1{font-family:Georgia,"Times New Roman",serif;font-size:34px;line-height:1.05;margin:0 0 10px;font-weight:600}
-    .lead{margin:0 0 28px;color:var(--muted);font-size:17px}
+    body{margin:0;min-height:100svh;display:grid;place-items:center;padding:max(14px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));background:radial-gradient(circle at 85% 12%,rgba(83,126,90,.2),transparent 34rem),radial-gradient(circle at 8% 92%,rgba(211,166,77,.16),transparent 28rem),var(--paper);color:var(--ink);font-family:"Avenir Next",Avenir,"Gill Sans",ui-sans-serif,sans-serif}
+    main{display:grid;grid-template-areas:"intro" "map" "actions";width:min(100%,430px);overflow:hidden;background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:0 22px 60px rgba(32,52,40,.14)}
+    .intro{grid-area:intro;padding:20px 22px 16px;text-align:left}
+    .eyebrow{display:flex;align-items:center;gap:8px;margin:0 0 7px;color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    .eyebrow::before{width:8px;height:8px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 4px rgba(211,166,77,.18);content:""}
+    h1{font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,serif;font-size:clamp(29px,8vw,38px);line-height:1;margin:0;font-weight:700;letter-spacing:-.025em}
+    .lead{margin:8px 0 0;color:var(--muted);font-size:14px;line-height:1.35}
+    .lead strong{color:var(--ink);font-weight:700}
+    .route-preview{grid-area:map;position:relative;margin:0;background:#dfe8d9;border-block:1px solid var(--line)}
+    .route-preview::after{position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28);pointer-events:none;content:""}
+    .route-preview img{display:block;width:100%;height:auto}
+    .actions{grid-area:actions;padding:16px 22px 20px;text-align:center}
     .buttons{display:grid;gap:12px}
-    a.button{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:14px 18px;border-radius:14px;text-decoration:none;font-size:17px;font-weight:700;border:1px solid var(--accent)}
+    a.button{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:13px 18px;border:1px solid var(--accent);border-radius:14px;text-decoration:none;font-size:17px;font-weight:700;transition:transform .16s ease,background-color .16s ease}
     .button-icon{width:24px;height:24px;flex:0 0 24px}
     a.primary{background:var(--accent);color:white}
     a.secondary{background:transparent;color:var(--accent)}
+    @media (hover:hover){a.button:hover{transform:translateY(-1px)}a.primary:hover{background:var(--accent-dark)}a.secondary:hover{background:#f1f4ec}}
+    a.button:active{transform:translateY(1px)}
     a.button:focus-visible{outline:3px solid #a8b6a5;outline-offset:3px}
-    .note{margin:24px 0 0;color:var(--muted);font-size:13px;line-height:1.45}
+    .note{margin:14px 0 0;color:var(--muted);font-size:12px;line-height:1.4}
     .coords{font-variant-numeric:tabular-nums;white-space:nowrap}
+    @media (max-width:359px){
+      body{padding:max(10px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
+      main{border-radius:22px}
+      .intro{padding:16px 18px 12px}
+      h1{font-size:28px}
+      .lead{margin-top:6px;font-size:13px}
+      .actions{padding:12px 18px 16px}
+      .buttons{gap:10px}
+      a.button{font-size:16px}
+      .note{margin-top:10px;font-size:11.5px}
+    }
+    @media (max-height:620px){
+      .intro{padding-top:16px;padding-bottom:12px}
+      .lead{margin-top:6px}
+      .actions{padding-top:12px;padding-bottom:16px}
+      .buttons{gap:10px}
+      a.button{min-height:54px}
+      .note{display:none}
+    }
+    @media (orientation:landscape) and (max-height:500px) and (min-width:560px){
+      body{padding:10px}
+      main{grid-template-areas:"map intro" "map actions";grid-template-columns:minmax(0,1.1fr) minmax(270px,.9fr);grid-template-rows:auto 1fr;width:min(100%,720px);border-radius:22px}
+      .intro{padding:18px 18px 10px}
+      h1{font-size:30px}
+      .route-preview{border-block:0;border-right:1px solid var(--line)}
+      .actions{align-self:start;padding:8px 18px 14px}
+      .buttons{gap:8px}
+      a.button{min-height:50px;padding:10px 14px;font-size:15px}
+      .note{margin-top:8px;font-size:11px}
+    }
   </style>
 </head>
 <body>
   <main>
-    <div class="mark" aria-hidden="true">⌖</div>
-    <h1>Quinta Las Cumbres</h1>
-    <p class="lead">Elige tu aplicación preferida para llegar.</p>
-    <div class="buttons">
-      <a class="button primary" href="https://www.waze.com/ul?ll=-2.791370%2C-78.936028&amp;navigate=yes">
-        <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4.25 10.75c0-4.14 3.47-7.5 7.75-7.5s7.75 3.36 7.75 7.5-3.47 7.5-7.75 7.5H8.5L4 20.75l1.48-4.05a7.3 7.3 0 0 1-1.23-3.95Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-          <circle cx="9.25" cy="10.25" r="1" fill="currentColor"/>
-          <circle cx="14.75" cy="10.25" r="1" fill="currentColor"/>
-          <path d="M8.75 13.25c.82 1 1.9 1.5 3.25 1.5s2.43-.5 3.25-1.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-          <circle cx="8" cy="19.25" r="1.25" fill="currentColor"/>
-          <circle cx="16" cy="19.25" r="1.25" fill="currentColor"/>
-        </svg>
-        <span>Abrir en Waze</span>
-      </a>
-      <a class="button secondary" href="https://www.google.com/maps/dir/?api=1&amp;destination=-2.791370%2C-78.936028&amp;travelmode=driving&amp;dir_action=navigate">
-        <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Z" fill="#4285f4"/>
-          <path d="M5 9c0 5.25 7 13 7 13v-9.5A3.5 3.5 0 0 1 8.5 9Z" fill="#34a853"/>
-          <path d="M12 2a7 7 0 0 0-6.06 3.5L9 8.56A3.5 3.5 0 0 1 12 5.5Z" fill="#fbbc04"/>
-          <path d="M12 2v3.5A3.5 3.5 0 0 1 15.5 9H19a7 7 0 0 0-7-7Z" fill="#ea4335"/>
-          <circle cx="12" cy="9" r="2.5" fill="#fff"/>
-        </svg>
-        <span>Abrir en Google Maps</span>
-      </a>
-    </div>
-    <p class="note">Ambas opciones usan el mismo punto de llegada.<br><span class="coords">-2.791370, -78.936028</span></p>
+    <header class="intro">
+      <p class="eyebrow">Cómo llegar</p>
+      <h1>Quinta Las Cumbres</h1>
+      <p class="lead">Desde Cuenca hacia Déleg · <strong>36 min aprox.</strong></p>
+    </header>
+    <figure class="route-preview">
+      <img src="ruta.jpg" width="1170" height="1039" alt="Mapa de la ruta desde Cuenca hasta Quinta Las Cumbres que muestra un tiempo estimado de 36 minutos" decoding="async" fetchpriority="high">
+    </figure>
+    <section class="actions" aria-label="Opciones de navegación">
+      <div class="buttons">
+        <a class="button primary" href="https://www.waze.com/ul?ll=-2.791370%2C-78.936028&amp;navigate=yes">
+          <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.25 10.75c0-4.14 3.47-7.5 7.75-7.5s7.75 3.36 7.75 7.5-3.47 7.5-7.75 7.5H8.5L4 20.75l1.48-4.05a7.3 7.3 0 0 1-1.23-3.95Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            <circle cx="9.25" cy="10.25" r="1" fill="currentColor"/>
+            <circle cx="14.75" cy="10.25" r="1" fill="currentColor"/>
+            <path d="M8.75 13.25c.82 1 1.9 1.5 3.25 1.5s2.43-.5 3.25-1.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            <circle cx="8" cy="19.25" r="1.25" fill="currentColor"/>
+            <circle cx="16" cy="19.25" r="1.25" fill="currentColor"/>
+          </svg>
+          <span>Abrir en Waze</span>
+        </a>
+        <a class="button secondary" href="https://www.google.com/maps/dir/?api=1&amp;destination=-2.791370%2C-78.936028&amp;travelmode=driving&amp;dir_action=navigate">
+          <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Z" fill="#4285f4"/>
+            <path d="M5 9c0 5.25 7 13 7 13v-9.5A3.5 3.5 0 0 1 8.5 9Z" fill="#34a853"/>
+            <path d="M12 2a7 7 0 0 0-6.06 3.5L9 8.56A3.5 3.5 0 0 1 12 5.5Z" fill="#fbbc04"/>
+            <path d="M12 2v3.5A3.5 3.5 0 0 1 15.5 9H19a7 7 0 0 0-7-7Z" fill="#ea4335"/>
+            <circle cx="12" cy="9" r="2.5" fill="#fff"/>
+          </svg>
+          <span>Abrir en Google Maps</span>
+        </a>
+      </div>
+      <p class="note">Ambas opciones usan el mismo punto de llegada.<br><span class="coords">-2.791370, -78.936028</span></p>
+    </section>
   </main>
 </body>
 </html>
