@@ -3,7 +3,7 @@
 Tiny static navigation landing page for guests.
 
 Production URL:
-https://elementalidad.com/quinta-las-cumbres/
+https://www.elementalidad.com/quinta-las-cumbres/
 
 Destination:
 -2.791370, -78.936028
