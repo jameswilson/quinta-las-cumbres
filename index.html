@@ -16,6 +16,7 @@
     .lead{margin:0 0 28px;color:var(--muted);font-size:17px}
     .buttons{display:grid;gap:12px}
     a.button{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:14px 18px;border-radius:14px;text-decoration:none;font-size:17px;font-weight:700;border:1px solid var(--accent)}
+    .button-icon{width:24px;height:24px;flex:0 0 24px}
     a.primary{background:var(--accent);color:white}
     a.secondary{background:transparent;color:var(--accent)}
     a.button:focus-visible{outline:3px solid #a8b6a5;outline-offset:3px}
@@ -29,8 +30,27 @@
     <h1>Quinta Las Cumbres</h1>
     <p class="lead">Elige tu aplicación preferida para llegar.</p>
     <div class="buttons">
-      <a class="button primary" href="https://www.waze.com/ul?ll=-2.791370%2C-78.936028&amp;navigate=yes">Abrir en Waze</a>
-      <a class="button secondary" href="https://www.google.com/maps/dir/?api=1&amp;destination=-2.791370%2C-78.936028&amp;travelmode=driving&amp;dir_action=navigate">Abrir en Google Maps</a>
+      <a class="button primary" href="https://www.waze.com/ul?ll=-2.791370%2C-78.936028&amp;navigate=yes">
+        <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4.25 10.75c0-4.14 3.47-7.5 7.75-7.5s7.75 3.36 7.75 7.5-3.47 7.5-7.75 7.5H8.5L4 20.75l1.48-4.05a7.3 7.3 0 0 1-1.23-3.95Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+          <circle cx="9.25" cy="10.25" r="1" fill="currentColor"/>
+          <circle cx="14.75" cy="10.25" r="1" fill="currentColor"/>
+          <path d="M8.75 13.25c.82 1 1.9 1.5 3.25 1.5s2.43-.5 3.25-1.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          <circle cx="8" cy="19.25" r="1.25" fill="currentColor"/>
+          <circle cx="16" cy="19.25" r="1.25" fill="currentColor"/>
+        </svg>
+        <span>Abrir en Waze</span>
+      </a>
+      <a class="button secondary" href="https://www.google.com/maps/dir/?api=1&amp;destination=-2.791370%2C-78.936028&amp;travelmode=driving&amp;dir_action=navigate">
+        <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Z" fill="#4285f4"/>
+          <path d="M5 9c0 5.25 7 13 7 13v-9.5A3.5 3.5 0 0 1 8.5 9Z" fill="#34a853"/>
+          <path d="M12 2a7 7 0 0 0-6.06 3.5L9 8.56A3.5 3.5 0 0 1 12 5.5Z" fill="#fbbc04"/>
+          <path d="M12 2v3.5A3.5 3.5 0 0 1 15.5 9H19a7 7 0 0 0-7-7Z" fill="#ea4335"/>
+          <circle cx="12" cy="9" r="2.5" fill="#fff"/>
+        </svg>
+        <span>Abrir en Google Maps</span>
+      </a>
     </div>
     <p class="note">Ambas opciones usan el mismo punto de llegada.<br><span class="coords">-2.791370, -78.936028</span></p>
   </main>
